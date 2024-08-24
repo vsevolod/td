@@ -2113,7 +2113,7 @@ Result<vector<MessageEntity>> parse_markdown_v2(string &text) {
             i++;
             type = MessageEntity::Type::Spoiler;
           } else {
-            return Status::Error(400, PSLICE() << "Character '" << text[i]
+            return Status::Error(400, PSLICE() << "Index at: " << i << "; Character '" << text[i]
                                                << "' is reserved and must be escaped with the preceding '\\'");
           }
           break;
@@ -2152,7 +2152,7 @@ Result<vector<MessageEntity>> parse_markdown_v2(string &text) {
             i++;
             type = MessageEntity::Type::CustomEmoji;
           } else {
-            return Status::Error(400, PSLICE() << "Character '" << text[i]
+            return Status::Error(400, PSLICE() << "Index at: " << i << "; Character '" << text[i]
                                                << "' is reserved and must be escaped with the preceding '\\'");
           }
           break;
@@ -2171,13 +2171,13 @@ Result<vector<MessageEntity>> parse_markdown_v2(string &text) {
               have_blockquote = true;
             }
           } else {
-            return Status::Error(400, PSLICE() << "Character '" << text[i]
+            return Status::Error(400, PSLICE() << "Index at: " << i << "; Character '" << text[i]
                                                << "' is reserved and must be escaped with the preceding '\\'");
           }
           break;
         default:
           return Status::Error(
-              400, PSLICE() << "Character '" << text[i] << "' is reserved and must be escaped with the preceding '\\'");
+              400, PSLICE() << "Index at: " << i << "; Character '" << text[i] << "' is reserved and must be escaped with the preceding '\\'");
       }
       if (type == MessageEntity::Type::Size) {
         continue;
